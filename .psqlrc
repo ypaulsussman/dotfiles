@@ -1,0 +1,3 @@
+\x auto
+\pset null '(NULL)'
+\set PROMPT1 '%M:%> %n@%/%#%x '

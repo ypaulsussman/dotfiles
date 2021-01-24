@@ -1,0 +1,5 @@
+dbaeumer.vscode-eslint
+dsznajder.es7-react-js-snippets
+eamodio.gitlens
+esbenp.prettier-vscode
+pflannery.vscode-versionlens

@@ -1,0 +1,14 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.minimap.enabled": false,
+  "editor.rulers": [80],
+  "editor.tabSize": 2,
+  "gitlens.codeLens.enabled": false,
+  "gitlens.currentLine.enabled": false,
+  "telemetry.enableTelemetry": false,
+  "window.zoomLevel": -1,
+  "workbench.editor.enablePreview": false,
+  "workbench.colorTheme": "Solarized Dark",
+  "workbench.panel.defaultLocation": "right",
+  "workbench.startupEditor": "newUntitledFile"
+}
