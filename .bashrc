@@ -1,4 +1,4 @@
-# ====== Ubuntu Defaults ====== #
+# ====== Ubuntu ~Defaults ====== #
 
 # If not running interactively, don't do anything
 case $- in
@@ -73,6 +73,13 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# ====== Silliness ====== #
+
+# make your %-delineated file
+# $ strfile -c % taoup_quotes taoup_quotes.dat
+# move both files to /usr/share/games/fortunes
+alias wugui="fortune taoup_quotes | cowsay -f turtle"
+
 # ====== Shortcuts ====== #
 
 alias coba="code ~/.bashrc"
@@ -103,4 +110,3 @@ alias yi="yarn install"
 alias yrs="yarn run start"
 alias yrt="yarn run test"
 alias yrb="yarn run build"
-
