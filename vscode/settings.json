@@ -1,12 +1,34 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.lineHeight": 24,
   "editor.minimap.enabled": false,
   "editor.rulers": [80],
   "editor.tabSize": 2,
+  "editor.tokenColorCustomizations": {
+    "[Solarized Dark]": {
+      "textMateRules": [
+        {
+          "scope": [
+            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown"
+          ],
+          "settings": {
+            "foreground": "#6c71c4"
+          }
+        },
+        {
+          "scope": [
+            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown"
+          ],
+          "settings": {
+            "foreground": "#dc322f"
+          }
+        }
+      ]
+    }
+  },
   "gitlens.codeLens.enabled": false,
   "gitlens.currentLine.enabled": false,
   "telemetry.enableTelemetry": false,
-  "window.zoomLevel": -1,
   "workbench.editor.enablePreview": false,
   "workbench.colorTheme": "Solarized Dark",
   "workbench.panel.defaultLocation": "right",
