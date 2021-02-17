@@ -2,6 +2,7 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.lineHeight": 24,
   "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "none",
   "editor.rulers": [80],
   "editor.tabSize": 2,
   "editor.tokenColorCustomizations": {
@@ -9,7 +10,8 @@
       "textMateRules": [
         {
           "scope": [
-            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown "
+            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown",
+            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown"
           ],
           "settings": {
             "foreground": "#6c71c4"
@@ -17,10 +19,19 @@
         },
         {
           "scope": [
-            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown"
+            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown",
+            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown"
           ],
           "settings": {
             "foreground": "#dc322f"
+          }
+        },
+        {
+          "scope": [
+            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown"
+          ],
+          "settings": {
+            "foreground": "#b58900"
           }
         }
       ]
