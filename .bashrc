@@ -78,7 +78,7 @@ export NVM_DIR="$HOME/.nvm"
 # make your %-delineated file
 # $ strfile -c % taoup_quotes taoup_quotes.dat
 # move both files to /usr/share/games/fortunes
-alias wugui="fortune taoup_quotes | cowsay -f turtle"
+alias wugui="fortune tao_copy | cowsay -f turtle"
 
 # ====== Shortcuts ====== #
 
@@ -100,8 +100,8 @@ alias gsl="git stash list"
 alias gsd="git stash drop"
 alias gsa="git stash apply"
 
-alias ga="git add . && gs"
-alias gcam="git commit -am"
+alias ga="git add -A && gs"
+alias gcam="git add -A && git commit -m"
 
 alias nrs="npm run start"
 alias nrt="npm run test"
@@ -110,3 +110,5 @@ alias yi="yarn install"
 alias yrs="yarn run start"
 alias yrt="yarn run test"
 alias yrb="yarn run build"
+
+alias ankify="ruby ~/Desktop/convenience_scripts/ruby_scripts/ankify_markdown.rb ~/Desktop/anki_whiteboard.md"

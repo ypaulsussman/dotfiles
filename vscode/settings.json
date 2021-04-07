@@ -37,12 +37,13 @@
       ]
     }
   },
+  "explorer.compactFolders": false,
+  "git.enableSmartCommit": true,
   "gitlens.codeLens.enabled": false,
   "gitlens.currentLine.enabled": false,
   "telemetry.enableTelemetry": false,
   "workbench.editor.enablePreview": false,
   "workbench.colorTheme": "Solarized Dark",
   "workbench.panel.defaultLocation": "right",
-  "workbench.startupEditor": "newUntitledFile",
-  "git.enableSmartCommit": true
+  "workbench.startupEditor": "newUntitledFile"
 }
