@@ -2,5 +2,7 @@ dbaeumer.vscode-eslint
 dsznajder.es7-react-js-snippets
 eamodio.gitlens
 esbenp.prettier-vscode
+mtxr.sqltools
+mtxr.sqltools-driver-pg
 pflannery.vscode-versionlens
 whtouche.vscode-js-console-utils

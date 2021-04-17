@@ -1,5 +1,8 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[sql]": {
+    "editor.defaultFormatter": "mtxr.sqltools"
+  },
   "editor.lineHeight": 24,
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "none",
@@ -41,6 +44,12 @@
   "git.enableSmartCommit": true,
   "gitlens.codeLens.enabled": false,
   "gitlens.currentLine.enabled": false,
+  "sqltools.format": {
+    "language": "pl/sql",
+    "reservedWordCase": "upper",
+    "linesBetweenQueries": 2
+  },
+  "sqltools.formatLanguages": ["sql"],
   "telemetry.enableTelemetry": false,
   "workbench.editor.enablePreview": false,
   "workbench.colorTheme": "Solarized Dark",
