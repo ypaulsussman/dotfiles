@@ -45,7 +45,7 @@
   "gitlens.codeLens.enabled": false,
   "gitlens.currentLine.enabled": false,
   "sqltools.format": {
-    "language": "pl/sql",
+    "language": "sql",
     "reservedWordCase": "upper",
     "linesBetweenQueries": 2
   },

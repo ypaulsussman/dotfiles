@@ -67,6 +67,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# ====== ruby ====== #
+
+# NB you used the script at 
+# https://github.com/rbenv/rbenv-installer#rbenv-installer
+# (not the version available via apt)
+export PATH=$PATH:/home/ysuss/.rbenv/bin
+eval "$(rbenv init -)"
+
 # ====== nvm ====== #
 
 export NVM_DIR="$HOME/.nvm"
@@ -110,5 +118,8 @@ alias yi="yarn install"
 alias yrs="yarn run start"
 alias yrt="yarn run test"
 alias yrb="yarn run build"
+
+alias bi="bundle install"
+alias fs="foreman start"
 
 alias ankify="ruby ~/Desktop/convenience_scripts/ruby_scripts/ankify_markdown.rb ~/Desktop/anki_whiteboard.md"
