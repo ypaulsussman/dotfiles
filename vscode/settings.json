@@ -1,5 +1,8 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[ruby]": {
+    "editor.defaultFormatter": "misogi.ruby-rubocop"
+  },
   "[sql]": {
     "editor.defaultFormatter": "mtxr.sqltools"
   },
@@ -44,6 +47,19 @@
   "git.enableSmartCommit": true,
   "gitlens.codeLens.enabled": false,
   "gitlens.currentLine.enabled": false,
+  "ruby.rubocop.executePath": "/home/ysuss/.rbenv/shims/",
+  "ruby.rubocop.onSave": false,
+  "ruby.useBundler": true,
+  "ruby.useLanguageServer": true,
+  "ruby.lint": {
+    "rubocop": {
+      "useBundler": true
+    },
+    "reek": {
+      "useBundler": true
+    }
+  },
+  "ruby.format": "rubocop",
   "sqltools.format": {
     "language": "sql",
     "reservedWordCase": "upper",
