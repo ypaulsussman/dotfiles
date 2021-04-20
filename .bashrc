@@ -122,5 +122,4 @@ alias yrb="yarn run build"
 alias bi="bundle install"
 alias fs="foreman start"
 
-alias vscle="code --list-extensions"
 alias ankify="ruby ~/Desktop/convenience_scripts/ruby_scripts/ankify_markdown.rb ~/Desktop/anki_whiteboard.md"

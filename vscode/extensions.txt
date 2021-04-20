@@ -1,3 +1,5 @@
+dotfiles $ code --list-extensions
+
 castwide.solargraph
 dbaeumer.vscode-eslint
 dsznajder.es7-react-js-snippets
