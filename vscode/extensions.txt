@@ -7,8 +7,8 @@ eamodio.gitlens
 esbenp.prettier-vscode
 kaiwood.endwise
 misogi.ruby-rubocop
-mtxr.sqltools
-mtxr.sqltools-driver-pg
+// mtxr.sqltools
+// mtxr.sqltools-driver-pg
 ninoseki.vscode-gem-lens
 pflannery.vscode-versionlens
 rebornix.ruby

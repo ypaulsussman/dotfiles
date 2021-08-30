@@ -1,10 +1,14 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "eslint.format.enable": true,
   "[ruby]": {
     "editor.defaultFormatter": "misogi.ruby-rubocop"
   },
-  "[sql]": {
-    "editor.defaultFormatter": "mtxr.sqltools"
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.lineHeight": 24,
   "editor.minimap.enabled": false,
@@ -44,6 +48,7 @@
     }
   },
   "explorer.compactFolders": false,
+  "git.confirmSync": false,
   "git.enableSmartCommit": true,
   "gitlens.codeLens.enabled": false,
   "gitlens.currentLine.enabled": false,
@@ -60,15 +65,12 @@
     }
   },
   "ruby.format": "rubocop",
-  "sqltools.format": {
-    "language": "sql",
-    "reservedWordCase": "upper",
-    "linesBetweenQueries": 2
-  },
-  "sqltools.formatLanguages": ["sql"],
   "telemetry.enableTelemetry": false,
+  "terminal.integrated.tabs.enabled": false,
   "workbench.editor.enablePreview": false,
   "workbench.colorTheme": "Solarized Dark",
   "workbench.panel.defaultLocation": "right",
-  "workbench.startupEditor": "newUntitledFile"
+  "workbench.startupEditor": "newUntitledFile",
+  "security.workspace.trust.untrustedFiles": "open",
+  "window.zoomLevel": 1
 }

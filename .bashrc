@@ -98,6 +98,7 @@ alias gb="git branch"
 alias gc="git checkout"
 alias gcb="git checkout -b"
 alias gcm="git checkout master"
+alias gbd="git branch -d"
 alias gf="git fetch"
 alias gp="git pull"
 alias grsh="git reset --hard"
@@ -121,5 +122,8 @@ alias yrb="yarn run build"
 
 alias bi="bundle install"
 alias fs="foreman start"
+alias gphm="git push heroku master"
 
-alias ankify="ruby ~/Desktop/convenience_scripts/ruby_scripts/ankify_markdown.rb ~/Desktop/anki_whiteboard.md"
+alias ankify="ruby ~/Desktop/convenience_scripts/ruby_scripts/ankify_markdown.rb ~/Desktop/anki_whiteboard.md && code ~/Desktop/anki_whiteboard.html"
+
+alias ytdl="python3 /usr/local/bin/youtube-dl"
