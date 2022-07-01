@@ -1,6 +1,5 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "eslint.format.enable": true,
   "[ruby]": {
     "editor.defaultFormatter": "misogi.ruby-rubocop"
   },
@@ -10,6 +9,7 @@
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "editor.bracketPairColorization.enabled": true,
   "editor.lineHeight": 24,
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "none",
@@ -47,6 +47,7 @@
       ]
     }
   },
+  "eslint.format.enable": true,
   "explorer.compactFolders": false,
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
@@ -72,5 +73,6 @@
   "workbench.panel.defaultLocation": "right",
   "workbench.startupEditor": "newUntitledFile",
   "security.workspace.trust.untrustedFiles": "open",
-  "window.zoomLevel": 1
+  "window.zoomLevel": -1,
+  "terminal.integrated.copyOnSelection": true
 }
