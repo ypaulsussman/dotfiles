@@ -1,5 +1,8 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python"
+  },
   "[ruby]": {
     "editor.defaultFormatter": "misogi.ruby-rubocop"
   },
@@ -45,7 +48,38 @@
           }
         }
       ]
+    },
+    "[Solarized Light]": {
+      "textMateRules": [
+        {
+          "scope": [
+            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown",
+            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown"
+          ],
+          "settings": {
+            "foreground": "#6c71c4"
+          }
+        },
+        {
+          "scope": [
+            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown",
+            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown"
+          ],
+          "settings": {
+            "foreground": "#dc322f"
+          }
+        },
+        {
+          "scope": [
+            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown"
+          ],
+          "settings": {
+            "foreground": "#b58900"
+          }
+        }
+      ]
     }
+
   },
   "eslint.format.enable": true,
   "explorer.compactFolders": false,
@@ -69,10 +103,10 @@
   "telemetry.enableTelemetry": false,
   "terminal.integrated.tabs.enabled": false,
   "workbench.editor.enablePreview": false,
-  "workbench.colorTheme": "Solarized Dark",
+  "workbench.colorTheme": "Solarized Light",
   "workbench.panel.defaultLocation": "right",
   "workbench.startupEditor": "newUntitledFile",
   "security.workspace.trust.untrustedFiles": "open",
-  "window.zoomLevel": -1,
-  "terminal.integrated.copyOnSelection": true
+  "terminal.integrated.copyOnSelection": true,
+  "window.zoomLevel": -1
 }
