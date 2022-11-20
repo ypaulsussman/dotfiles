@@ -127,3 +127,5 @@ alias gphm="git push heroku master"
 alias ankify="ruby ~/Desktop/convenience_scripts/ruby_scripts/ankify_markdown.rb ~/Desktop/anki_whiteboard.md && code ~/Desktop/anki_whiteboard.html"
 
 alias ytdl="python3 /usr/local/bin/youtube-dl"
+
+# testing gh cli
