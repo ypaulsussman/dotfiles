@@ -67,26 +67,36 @@ if ! shopt -oq posix; then
   fi
 fi
 
+## NB All lines commented with two octothorpes =>
+## "not by-default to-be-implemented on this machine" 
+# (due to uncertainty of runtime-management strategy,
+## i.e. containerization vs nvm/rvm/pyenv/etc vs different languages)
+
 # ====== ruby ====== #
 
 # NB you used the script at 
 # https://github.com/rbenv/rbenv-installer#rbenv-installer
 # (not the version available via apt)
-export PATH=$PATH:/home/ysuss/.rbenv/bin
-eval "$(rbenv init -)"
+## export PATH=$PATH:/home/ysuss/.rbenv/bin
+## eval "$(rbenv init -)"
+
+# ====== pyenv ====== #
+## export PYENV_ROOT="$HOME/.pyenv"
+## export PATH="$PYENV_ROOT/bin:$PATH"
+## eval "$(pyenv virtualenv-init -)"
+## if command -v pyenv 1>/dev/null 2>&1; then
+##  eval "$(pyenv init --path)"
+## fi
 
 # ====== nvm ====== #
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# ====== Silliness ====== #
-
-# make your %-delineated file
-# $ strfile -c % taoup_quotes taoup_quotes.dat
-# move both files to /usr/share/games/fortunes
-alias wugui="fortune tao_copy | cowsay -f turtle"
+# ====== fly.io ====== #
+## export FLYCTL_INSTALL="/home/y/.fly"
+## export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
 # ====== Shortcuts ====== #
 
@@ -97,33 +107,39 @@ alias gs="git status"
 alias gb="git branch"
 alias gc="git checkout"
 alias gcb="git checkout -b"
+alias gcd="git checkout development"
 alias gcm="git checkout master"
 alias gbd="git branch -d"
-alias gf="git fetch"
-alias gp="git pull"
 alias grsh="git reset --hard"
-alias grbi="git rebase -i"
 
 alias gst="git stash"
 alias gsl="git stash list"
 alias gsd="git stash drop"
 alias gsa="git stash apply"
 
+alias gf="git fetch"
+alias gp="git pull"
 alias ga="git add -A && gs"
 alias gcam="git add -A && git commit -m"
+alias grbi="git rebase -i"
 
 alias nrs="npm run start"
+alias nrd="npm run dev"
 alias nrt="npm run test"
 alias nrb="npm run build"
-alias yi="yarn install"
-alias yrs="yarn run start"
-alias yrt="yarn run test"
-alias yrb="yarn run build"
 
-alias bi="bundle install"
-alias fs="foreman start"
-alias gphm="git push heroku master"
+## alias yi="yarn install"
+## alias yrs="yarn run start"
+## alias yrt="yarn run test"
+## alias yrb="yarn run build"
+
+## alias bi="bundle install"
+## alias fs="foreman start"
+## alias gphm="git push heroku master"
 
 alias ankify="ruby ~/Desktop/convenience_scripts/ruby_scripts/ankify_markdown.rb ~/Desktop/anki_whiteboard.md && code ~/Desktop/anki_whiteboard.html"
 
-alias ytdl="python3 /usr/local/bin/youtube-dl"
+alias gsm='gnome-system-monitor'
+alias tln='~/talon/run.sh'
+alias fsnap='sudo pkill snap-store && sudo snap refresh snap-store'
+

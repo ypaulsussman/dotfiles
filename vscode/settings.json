@@ -1,11 +1,11 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "[python]": {
-    "editor.defaultFormatter": "ms-python.python"
-  },
-  "[ruby]": {
-    "editor.defaultFormatter": "misogi.ruby-rubocop"
-  },
+  // "[python]": {
+  //   "editor.defaultFormatter": "ms-python.black-formatter"
+  // },
+  // "[ruby]": {
+  //   "editor.defaultFormatter": "misogi.ruby-rubocop"
+  // },
   "[typescriptreact]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
@@ -14,7 +14,11 @@
   },
   "editor.bracketPairColorization.enabled": true,
   "editor.lineHeight": 24,
+  "editor.linkedEditing": true,
   "editor.minimap.enabled": false,
+  "editor.quickSuggestions": {
+    "strings": true
+  },
   "editor.renderWhitespace": "none",
   "editor.rulers": [80],
   "editor.tabSize": 2,
@@ -79,34 +83,38 @@
         }
       ]
     }
-
   },
+  "editor.wordWrap": "on",
   "eslint.format.enable": true,
   "explorer.compactFolders": false,
+  "explorer.confirmDragAndDrop": false,
+  "files.associations": {
+    "*.toml": "toml",
+    "*.css": "tailwindcss"
+  },
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
   "gitlens.codeLens.enabled": false,
   "gitlens.currentLine.enabled": false,
-  "ruby.rubocop.executePath": "/home/ysuss/.rbenv/shims/",
-  "ruby.rubocop.onSave": false,
-  "ruby.useBundler": true,
-  "ruby.useLanguageServer": true,
-  "ruby.lint": {
-    "rubocop": {
-      "useBundler": true
-    },
-    "reek": {
-      "useBundler": true
-    }
-  },
-  "ruby.format": "rubocop",
+  // "ruby.rubocop.executePath": "/home/ysuss/.rbenv/shims/",
+  // "ruby.rubocop.onSave": false,
+  // "ruby.useBundler": true,
+  // "ruby.useLanguageServer": true,
+  // "ruby.lint": {
+  //   "rubocop": {
+  //     "useBundler": true
+  //   },
+  //   "reek": {
+  //     "useBundler": true
+  //   }
+  // },
+  // "ruby.format": "rubocop",
+  "security.workspace.trust.untrustedFiles": "open",
   "telemetry.enableTelemetry": false,
+  "terminal.integrated.copyOnSelection": true,
   "terminal.integrated.tabs.enabled": false,
   "workbench.editor.enablePreview": false,
   "workbench.colorTheme": "Solarized Light",
   "workbench.panel.defaultLocation": "right",
-  "workbench.startupEditor": "newUntitledFile",
-  "security.workspace.trust.untrustedFiles": "open",
-  "terminal.integrated.copyOnSelection": true,
-  "window.zoomLevel": -1
+  "workbench.startupEditor": "newUntitledFile"
 }

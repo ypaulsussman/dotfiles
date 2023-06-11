@@ -1,19 +1,25 @@
 dotfiles $ code --list-extensions
 
-castwide.solargraph
-dbaeumer.vscode-eslint
-dsznajder.es7-react-js-snippets
+bradlc.vscode-tailwindcss
+bierner.emojisense
 eamodio.gitlens
+GitHub.vscode-pull-request-github
+pflannery.vscode-versionlens
+pokey.command-server
+
+dbaeumer.vscode-eslint
 esbenp.prettier-vscode
+dsznajder.es7-react-js-snippets
+whtouche.vscode-js-console-utils
+
+castwide.solargraph
 kaiwood.endwise
 misogi.ruby-rubocop
-// mtxr.sqltools
-// mtxr.sqltools-driver-pg
 ninoseki.vscode-gem-lens
-pflannery.vscode-versionlens
 rebornix.ruby
-whtouche.vscode-js-console-utils
 wingrunr21.vscode-ruby
+  NB Next time you work with .erb, revisit this link for more extensions:
+  https://betterprogramming.pub/vs-code-extensions-for-ruby-on-rails-developers-917474e03e04
 
-NB Next time you work with .erb, revisit this link for more extensions:
-https://betterprogramming.pub/vs-code-extensions-for-ruby-on-rails-developers-917474e03e04
+mtxr.sqltools
+mtxr.sqltools-driver-pg
