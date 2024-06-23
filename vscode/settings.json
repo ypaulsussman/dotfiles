@@ -1,120 +1,136 @@
 {
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  // "[python]": {
-  //   "editor.defaultFormatter": "ms-python.black-formatter"
-  // },
-  // "[ruby]": {
-  //   "editor.defaultFormatter": "misogi.ruby-rubocop"
-  // },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "editor.bracketPairColorization.enabled": true,
-  "editor.lineHeight": 24,
-  "editor.linkedEditing": true,
-  "editor.minimap.enabled": false,
-  "editor.quickSuggestions": {
-    "strings": true
-  },
-  "editor.renderWhitespace": "none",
-  "editor.rulers": [80],
-  "editor.tabSize": 2,
-  "editor.tokenColorCustomizations": {
-    "[Solarized Dark]": {
-      "textMateRules": [
-        {
-          "scope": [
-            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown",
-            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown"
-          ],
-          "settings": {
-            "foreground": "#6c71c4"
-          }
-        },
-        {
-          "scope": [
-            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown",
-            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown"
-          ],
-          "settings": {
-            "foreground": "#dc322f"
-          }
-        },
-        {
-          "scope": [
-            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown"
-          ],
-          "settings": {
-            "foreground": "#b58900"
-          }
-        }
-      ]
-    },
-    "[Solarized Light]": {
-      "textMateRules": [
-        {
-          "scope": [
-            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown",
-            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown"
-          ],
-          "settings": {
-            "foreground": "#6c71c4"
-          }
-        },
-        {
-          "scope": [
-            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown",
-            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown"
-          ],
-          "settings": {
-            "foreground": "#dc322f"
-          }
-        },
-        {
-          "scope": [
-            "markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown"
-          ],
-          "settings": {
-            "foreground": "#b58900"
-          }
-        }
-      ]
-    }
-  },
-  "editor.wordWrap": "on",
-  "eslint.format.enable": true,
-  "explorer.compactFolders": false,
-  "explorer.confirmDragAndDrop": false,
-  "files.associations": {
-    "*.toml": "toml",
-    "*.css": "tailwindcss"
-  },
-  "git.confirmSync": false,
-  "git.enableSmartCommit": true,
-  "gitlens.codeLens.enabled": false,
-  "gitlens.currentLine.enabled": false,
-  // "ruby.rubocop.executePath": "/home/ysuss/.rbenv/shims/",
-  // "ruby.rubocop.onSave": false,
-  // "ruby.useBundler": true,
-  // "ruby.useLanguageServer": true,
-  // "ruby.lint": {
-  //   "rubocop": {
-  //     "useBundler": true
-  //   },
-  //   "reek": {
-  //     "useBundler": true
-  //   }
-  // },
-  // "ruby.format": "rubocop",
-  "security.workspace.trust.untrustedFiles": "open",
-  "telemetry.enableTelemetry": false,
-  "terminal.integrated.copyOnSelection": true,
-  "terminal.integrated.tabs.enabled": false,
-  "workbench.editor.enablePreview": false,
-  "workbench.colorTheme": "Solarized Light",
-  "workbench.panel.defaultLocation": "right",
-  "workbench.startupEditor": "newUntitledFile"
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	// "[python]": {
+	//   "editor.defaultFormatter": "ms-python.black-formatter"
+	// },
+	// "[ruby]": {
+	//   "editor.defaultFormatter": "misogi.ruby-rubocop"
+	// },
+	"[svelte]": {
+		"editor.defaultFormatter": "svelte.svelte-vscode"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"editor.bracketPairColorization.enabled": true,
+	"editor.lineHeight": 24,
+	"editor.linkedEditing": true,
+	"editor.minimap.enabled": false,
+	"editor.quickSuggestions": {
+		"strings": true
+	},
+	"editor.renderWhitespace": "none",
+	"editor.rulers": [80],
+	"editor.tabSize": 2,
+	"editor.tokenColorCustomizations": {
+		"[Solarized Dark]": {
+			"textMateRules": [
+				{
+					"scope": [
+						"markup.list.unnumbered.markdown markup.list.unnumbered.markdown",
+						"markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown"
+					],
+					"settings": {
+						"foreground": "#6c71c4"
+					}
+				},
+				{
+					"scope": [
+						"markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown",
+						"markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown"
+					],
+					"settings": {
+						"foreground": "#dc322f"
+					}
+				},
+				{
+					"scope": [
+						"markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown"
+					],
+					"settings": {
+						"foreground": "#b58900"
+					}
+				}
+			]
+		},
+		"[Solarized Light]": {
+			"textMateRules": [
+				{
+					"scope": [
+						"markup.list.unnumbered.markdown markup.list.unnumbered.markdown",
+						"markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown"
+					],
+					"settings": {
+						"foreground": "#6c71c4"
+					}
+				},
+				{
+					"scope": [
+						"markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown",
+						"markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown"
+					],
+					"settings": {
+						"foreground": "#dc322f"
+					}
+				},
+				{
+					"scope": [
+						"markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown markup.list.unnumbered.markdown"
+					],
+					"settings": {
+						"foreground": "#b58900"
+					}
+				}
+			]
+		}
+	},
+	"editor.wordWrap": "on",
+	"eslint.format.enable": true,
+	"explorer.compactFolders": false,
+	"explorer.confirmDragAndDrop": false,
+	"files.associations": {
+		"*.toml": "toml",
+		"*.css": "tailwindcss"
+	},
+	"git.confirmSync": false,
+	"git.enableSmartCommit": true,
+	"gitlens.codeLens.enabled": false,
+	"gitlens.currentLine.enabled": false,
+	// "ruby.rubocop.executePath": "/home/ysuss/.rbenv/shims/",
+	// "ruby.rubocop.onSave": false,
+	// "ruby.useBundler": true,
+	// "ruby.useLanguageServer": true,
+	// "ruby.lint": {
+	//   "rubocop": {
+	//     "useBundler": true
+	//   },
+	//   "reek": {
+	//     "useBundler": true
+	//   }
+	// },
+	// "ruby.format": "rubocop",
+	"security.workspace.trust.untrustedFiles": "open",
+	"telemetry.enableTelemetry": false,
+	"terminal.integrated.copyOnSelection": true,
+	"terminal.integrated.tabs.enabled": false,
+	"workbench.colorTheme": "Solarized Dark",
+	"workbench.panel.defaultLocation": "right",
+	"workbench.startupEditor": "newUntitledFile",
+	"editor.inlineSuggest.enabled": true,
+	"github.copilot.enable": {
+		"*": true,
+		"plaintext": false,
+		"markdown": false,
+		"scminput": false,
+		"json": false
+	},
+	"svelte.enable-ts-plugin": true,
+	"workbench.editor.enablePreview": false,
+	"gitlens.advanced.messages": {
+		"suppressLineUncommittedWarning": true
+	},
+	"github.copilot.editor.enableAutoCompletions": true
 }

@@ -1,17 +1,23 @@
 dotfiles $ code --list-extensions
 
-bradlc.vscode-tailwindcss
+// GENERAL
 bierner.emojisense
 eamodio.gitlens
 GitHub.vscode-pull-request-github
 pflannery.vscode-versionlens
 pokey.command-server
+tomoki1207.pdf
 
+// HTML/CSS/JS
 dbaeumer.vscode-eslint
 esbenp.prettier-vscode
 dsznajder.es7-react-js-snippets
 whtouche.vscode-js-console-utils
+chakrounanas.turbo-console-log
+bradlc.vscode-tailwindcss
+svelte.svelte-vscode
 
+// RUBY
 castwide.solargraph
 kaiwood.endwise
 misogi.ruby-rubocop
@@ -21,5 +27,6 @@ wingrunr21.vscode-ruby
   NB Next time you work with .erb, revisit this link for more extensions:
   https://betterprogramming.pub/vs-code-extensions-for-ruby-on-rails-developers-917474e03e04
 
+// (POSTGRE)SQL
 mtxr.sqltools
 mtxr.sqltools-driver-pg
