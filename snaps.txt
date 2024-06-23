@@ -1,6 +1,5 @@
-<!-- dotfiles $ snap list -->
-
-<!-- @ybox -->
+<!-- @ybox (RIP) -->
+$ snap list
 ## Name                             Version                     Rev    Tracking          Publisher     Notes
 chromium                         90.0.4430.72                1558   latest/stable     canonical✓    -
 code                             3c4e3df9                    62     latest/stable     vscode✓       classic
@@ -23,20 +22,21 @@ snapd                            2.49.2                      11588  latest/stabl
 vlc                              3.0.12.1                    2103   latest/stable     videolan✓     -
 
 <!-- @ylab -->
-## Name                       Version           Rev    Tracking         Publisher        Notes
-bare                       1.0               5      latest/stable    canonical✓       base
-chromium                   114.0.5735.106    2497   latest/stable    canonical✓       -
-code                       b380da4e          130    latest/stable    vscode✓          classic
-core                       16-2.58.3         14946  latest/stable    canonical✓       core
-core18                     20230503          2751   latest/stable    canonical✓       base
-core20                     20230503          1891   latest/stable    canonical✓       base
-core22                     20230531          750    latest/stable    canonical✓       base
-cups                       2.4.2-5           872    latest/stable    openprinting✓    -
-duplicity                  1.2.3             415    latest/stable    kenneth-loafman  classic
-firefox                    114.0-3           2748   latest/stable/…  mozilla✓         -
-gnome-3-38-2004            0+git.6f39565     140    latest/stable/…  canonical✓       -
-gnome-42-2204              0+git.587e965     105    latest/stable    canonical✓       -
-gtk-common-themes          0.1-81-g442e511   1535   latest/stable/…  canonical✓       -
-snap-store                 41.3-71-g709398e  959    latest/stable/…  canonical✓       -
-snapd                      2.59.4            19361  latest/stable    canonical✓       snapd
-snapd-desktop-integration  0.9               83     latest/stable/…  canonical✓       -
+$ snap list
+Name                       Version           Rev    Tracking         Publisher          Notes
+bare                       1.0               5      latest/stable    canonical✓         base
+chromium                   126.0.6478.114    2890   latest/stable    canonical✓         -
+code                       5437499f          162    latest/stable    vscode✓            classic
+core                       16-2.61.2         16928  latest/stable    canonical✓         core
+core18                     20240416          2823   latest/stable    canonical✓         base
+core20                     20240416          2318   latest/stable    canonical✓         base
+core22                     20240408          1380   latest/stable    canonical✓         base
+core24                     20240528          423    latest/stable    canonical✓         base
+cups                       2.4.9-1           1052   latest/stable    openprinting✓      -
+firefox                    127.0.1-1         4451   latest/stable/…  mozilla✓           -
+gnome-42-2204              0+git.510a601     176    latest/stable    canonical✓         -
+gtk-common-themes          0.1-81-g442e511   1535   latest/stable/…  canonical✓         -
+snap-store                 41.3-77-g7dc86c8  1113   latest/stable/…  canonical✓         -
+snapd                      2.63              21759  latest/stable    canonical✓         snapd
+snapd-desktop-integration  0.9               157    latest/stable/…  canonical✓         -
+telegram-desktop           5.1.7             5970   latest/stable    telegram-desktop✓  -
