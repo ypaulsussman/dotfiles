@@ -95,14 +95,14 @@ alias soba="source ~/.bashrc"
 
 alias tln='~/talon/run.sh'
 alias copy="rsync -avh --progress"
-alias susssync='rsync -av --delete --progress "/home/y/Desktop/39 Paper Trail - 2025/" "/media/y/ybox2/ybox_backup/backup_sussworld/39 Paper Trail - 2025/"'
+alias susssync='rsync -av --delete --progress "/home/ysussman/Desktop/39 Paper Trail - 2025/" "/media/ysussman/ybox2/ybox_backup/backup_sussworld/39 Paper Trail - 2025/" && rsync -av --delete --progress "/home/ysussman/Desktop/39 Paper Trail - 2025/" "/media/ysussman/ybox3/ybox_backup/backup_sussworld/39 Paper Trail - 2025/"'
 
 alias au="sudo apt update"
 alias alu="sudo apt list --upgradable"
 alias afu="sudo apt full-upgrade"
 alias apc="sudo apt autopurge && sudo apt autoclean"
 
-alias badsnap='sudo snap-store --quit && sudo snap refresh snap-store && sudo snap refresh'
+# alias badsnap='sudo snap-store --quit && sudo snap refresh snap-store && sudo snap refresh'
 
 alias gs="git status"
 alias gb="git branch"
