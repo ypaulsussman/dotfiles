@@ -1,0 +1,15 @@
+{
+  "alwaysThinkingEnabled": true,
+  "permissions": {
+    "allow": [
+      "Bash --cmd 'ls*'",
+      "Bash --cmd 'tree*'",
+      "Bash --cmd 'grep*'"
+    ],
+    "ask": [
+      "Bash --cmd '/\\brm\\b/'",
+      "Bash --cmd '/\\bgit push/'",
+      "Bash --cmd '/\\bcurl\\b/'"
+    ]
+  }
+}
