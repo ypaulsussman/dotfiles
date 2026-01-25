@@ -95,13 +95,12 @@ alias soba="source ~/.bashrc"
 
 alias tln='~/talon/run.sh'
 alias copy="rsync -avh --progress"
-alias susssync='rsync -av --delete --progress "/home/ysussman/Desktop/39 Paper Trail - 2025/" "/media/ysussman/ybox2/ybox_backup/backup_sussworld/39 Paper Trail - 2025/" && rsync -av --delete --progress "/home/ysussman/Desktop/39 Paper Trail - 2025/" "/media/ysussman/ybox3/ybox_backup/backup_sussworld/39 Paper Trail - 2025/"'
+alias susssync='rsync -av --delete --progress "/home/ysussman/Desktop/40 Paper Trail - 2026/" "/media/ysussman/ybox2/ybox_backup/backup_sussworld/40 Paper Trail - 2026/" && rsync -av --delete --progress "/home/ysussman/Desktop/40 Paper Trail - 2026/" "/media/ysussman/ybox3/ybox_backup/backup_sussworld/40 Paper Trail - 2026/"'
 
 alias au="sudo apt update"
 alias alu="sudo apt list --upgradable"
 alias afu="sudo apt full-upgrade"
 alias apc="sudo apt autopurge && sudo apt autoclean"
-
 # alias badsnap='sudo snap-store --quit && sudo snap refresh snap-store && sudo snap refresh'
 
 alias gs="git status"
@@ -130,4 +129,6 @@ alias gcam="git add -A && git commit -m"
 alias htmlify='function _convert_to_html() { pandoc "$1" -f markdown -t html -s -o "${1%.*}.html"; };_convert_to_html'
 
 alias wtpserve="cd ~/Desktop/wtp && mix phx.server"
-alias wtpbackup="cd ~/Desktop/wtp && ./scripts/backup.exs"
+alias wtpbackup='DEST="/home/ysussman/Desktop/yr_workspace/40 Paper Trail - 2026"; TS=$(date -u +%Y-%m-%dT%H%M%S); rm -rf "$DEST"/wtp_backup--*; mkdir -p "$DEST/wtp_backup--$TS" && cd ~/Desktop/wtp && ./scripts/backup.exs "$DEST/wtp_backup--$TS"'   
+
+alias c="claude"
