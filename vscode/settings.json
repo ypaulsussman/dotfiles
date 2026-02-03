@@ -1,11 +1,5 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  // "[python]": {
-  //   "editor.defaultFormatter": "ms-python.black-formatter"
-  // },
-  // "[ruby]": {
-  //   "editor.defaultFormatter": "misogi.ruby-rubocop"
-  // },
   "[svelte]": {
     "editor.defaultFormatter": "svelte.svelte-vscode"
   },
@@ -198,19 +192,6 @@
   "git.enableSmartCommit": true,
   "gitlens.codeLens.enabled": false,
   "gitlens.currentLine.enabled": false,
-  // "ruby.rubocop.executePath": "/home/ysuss/.rbenv/shims/",
-  // "ruby.rubocop.onSave": false,
-  // "ruby.useBundler": true,
-  // "ruby.useLanguageServer": true,
-  // "ruby.lint": {
-  //   "rubocop": {
-  //     "useBundler": true
-  //   },
-  //   "reek": {
-  //     "useBundler": true
-  //   }
-  // },
-  // "ruby.format": "rubocop",
   "security.workspace.trust.untrustedFiles": "open",
   "telemetry.enableTelemetry": false,
   "terminal.integrated.copyOnSelection": true,

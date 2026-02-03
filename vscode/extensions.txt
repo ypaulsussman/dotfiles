@@ -17,16 +17,6 @@ chakrounanas.turbo-console-log
 bradlc.vscode-tailwindcss
 svelte.svelte-vscode
 
-// RUBY
-castwide.solargraph
-kaiwood.endwise
-misogi.ruby-rubocop
-ninoseki.vscode-gem-lens
-rebornix.ruby
-wingrunr21.vscode-ruby
-  NB Next time you work with .erb, revisit this link for more extensions:
-  https://betterprogramming.pub/vs-code-extensions-for-ruby-on-rails-developers-917474e03e04
-
 // (POSTGRE)SQL
 mtxr.sqltools
 mtxr.sqltools-driver-pg
