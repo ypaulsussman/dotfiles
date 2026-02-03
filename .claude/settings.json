@@ -1,15 +1,51 @@
 {
   "alwaysThinkingEnabled": true,
+  "outputStyle": "explanatory",
   "permissions": {
     "allow": [
       "Bash --cmd 'ls*'",
       "Bash --cmd 'tree*'",
-      "Bash --cmd 'grep*'"
+      "Bash --cmd 'grep*'",
+
+      "Bash --cmd 'cat*'",
+      "Bash --cmd 'head*'",
+      "Bash --cmd 'tail*'",
+      "Bash --cmd 'wc*'",
+      "Bash --cmd 'file*'",
+      "Bash --cmd 'find*'",
+      "Bash --cmd 'stat*'",
+      "Bash --cmd 'du*'",
+      "Bash --cmd 'which*'",
+      "Bash --cmd 'pwd'",
+
+      "Bash --cmd 'diff*'",
+
+      "Bash --cmd 'git status*'",
+      "Bash --cmd 'git log*'",
+      "Bash --cmd 'git diff*'",
+      "Bash --cmd 'git branch*'",
+      "Bash --cmd 'git show*'",
+      "Bash --cmd 'git stash list*'",
+      "Bash --cmd 'git remote -v*'",
+
+      "Bash --cmd 'mise*'",
+      "Bash --cmd 'mix*'",
+      "Bash --cmd 'iex*'",
+      "Bash --cmd 'elixir*'",
+
+      "Bash --cmd 'echo*'",
+      "Bash --cmd 'env*'",
+      "Bash --cmd 'printenv*'",
+      "Bash --cmd 'uname*'"
     ],
     "ask": [
       "Bash --cmd '/\\brm\\b/'",
       "Bash --cmd '/\\bgit push/'",
       "Bash --cmd '/\\bcurl\\b/'"
     ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash /home/ysussman/.claude/statusline-command.sh"
   }
 }

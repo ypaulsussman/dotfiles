@@ -121,6 +121,37 @@ alias gsl="git stash list"
 alias gsd="git stash drop"
 alias gsa="git stash apply"
 
+# Git worktrees
+alias gwl="git worktree list"
+alias gwr="git worktree remove"
+# gwt-add <branch> [base] — create worktree in ../repo-branch/ and cd into it
+gwt() {
+  local branch="$1" base="${2:-HEAD}"
+  if [ -z "$branch" ]; then
+    echo "Usage: gwt <branch-name> [base-ref]"
+    return 1
+  fi
+  local repo_name
+  repo_name=$(basename "$(git rev-parse --show-toplevel)")
+  local wt_dir="../${repo_name}-${branch}"
+  git worktree add -b "$branch" "$wt_dir" "$base" && cd "$wt_dir"
+}
+# gwt-go <branch> — cd into an existing worktree
+gwt-go() {
+  local branch="$1"
+  if [ -z "$branch" ]; then
+    echo "Usage: gwt-go <branch-name>"
+    return 1
+  fi
+  local wt_path
+  wt_path=$(git worktree list --porcelain | grep -B2 "branch refs/heads/$branch" | grep "^worktree " | sed 's/^worktree //')
+  if [ -z "$wt_path" ]; then
+    echo "No worktree found for branch '$branch'"
+    return 1
+  fi
+  cd "$wt_path"
+}
+
 alias ga="git add -A && gs"
 alias gcam="git add -A && git commit -m"
 
@@ -129,6 +160,7 @@ alias gcam="git add -A && git commit -m"
 alias htmlify='function _convert_to_html() { pandoc "$1" -f markdown -t html -s -o "${1%.*}.html"; };_convert_to_html'
 
 alias wtpserve="cd ~/Desktop/wtp && mix phx.server"
-alias wtpbackup='DEST="/home/ysussman/Desktop/yr_workspace/40 Paper Trail - 2026"; TS=$(date -u +%Y-%m-%dT%H%M%S); rm -rf "$DEST"/wtp_backup--*; mkdir -p "$DEST/wtp_backup--$TS" && cd ~/Desktop/wtp && ./scripts/backup.exs "$DEST/wtp_backup--$TS"'   
+alias wtpbackup='DEST="/home/ysussman/Desktop/yr_workspace/40 Paper Trail - 2026"; TS=$(date -u +%Y-%m-%dT%H%M%S); rm -rf "$DEST"/wtp_backup--*; mkdir -p "$DEST/wtp_backup--$TS" && cd ~/Desktop/wtp && ./scripts/backup.exs "$DEST/wtp_backup--$TS"'
 
 alias c="claude"
+alias rss="mise exec bun -- bun run ~/Desktop/rss-reader/src/index.ts"
