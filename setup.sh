@@ -129,7 +129,7 @@ fi
 # 9. Clone private repos
 # ----------------------------------------------------------------
 echo "==> Cloning private repos..."
-for repo in rss-reader wtp; do
+for repo in rss-reader wtp yr_workspace; do
   if [ -d "$HOME/Desktop/$repo" ]; then
     echo "   [ok]  ~/Desktop/$repo already exists"
   else
@@ -213,7 +213,7 @@ echo ""
 echo "Done!"
 echo ""
 echo "  De-snapped apps: firefox, code, vlc"
-echo "  Cloned repos:    ~/Desktop/rss-reader, ~/Desktop/wtp"
+echo "  Cloned repos:    ~/Desktop/rss-reader, ~/Desktop/wtp, ~/Desktop/yr_workspace"
 echo ""
 echo "  Linked files:"
 echo "    ~/.bashrc"
