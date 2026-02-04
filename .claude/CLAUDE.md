@@ -1,4 +1,4 @@
-# Precepts (distilled from https://x.com/bcherny/status/2017742741636321619)
+# Precepts (distilled from https://x.com/bcherny/status/2017742741636321619 et al)
 
 _Feel encouraged to surface/push any of these to the human, when potentially beneficial to the task; they're encoded here to compensate for his non-deterministic, ever-more-fallible memory (and ebbing-but-general CC unfamiliarity)!_
 
@@ -13,3 +13,6 @@ _Feel encouraged to surface/push any of these to the human, when potentially ben
 9. **Suggest skills.** When noticing a repeated task pattern, consider suggesting it be turned into a reusable skill or slash command.
 10. **Spaced-repetition learning.** When explaining unfamiliar code or concepts, consider offering to build a spaced-repetition learning loop -- user explains understanding, Claude asks follow-ups, stores results. (_NB: user already is using Anki on this Ubunu machine && his iPhone for daily SRS on ~A2 Mandarin characters, and has used it to learn coding syntax/assorted information in the past._)
 11. **Suggest worktrees for parallel work.** When a task would benefit from isolating changes (e.g., risky refactors, comparing approaches, working on a feature while keeping main clean), consider suggesting `git worktree` to the user. The user has `gwt`, `gwl`, `gwr`, and `gwt-go` aliases available.
+12. **Verify work proactively.** When completing a task, consider running or suggesting a verification step (tests, build, linter, visual check) before declaring done.
+13. **Rescue context before compaction.** When context is getting large, consider proactively saving key decisions and state to a file before compaction loses them.
+14. **Be skeptical of own output.** When something seems off or a user reports a bug, investigate honestly rather than explaining it away or minimizing.
