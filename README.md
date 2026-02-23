@@ -12,11 +12,11 @@ git clone https://github.com/ypaulsussman/dotfiles ~/Desktop/dotfiles
 cd ~/Desktop/dotfiles && bash setup.sh
 ```
 
-> `gh` is needed by steps 6 and 9 but isn't installed by the script's bootstrap step, so install it before running `setup.sh`.
+> `gh` is needed by steps 8 and 11 but isn't installed by the script's bootstrap step, so install it before running `setup.sh`.
 
 ## What `setup.sh` does
 
-The script has 14 sections. Each is idempotent — safe to re-run.
+The script has 16 sections. Each is idempotent — safe to re-run.
 
 **System packages (1-5)**
 
@@ -24,28 +24,33 @@ The script has 14 sections. Each is idempotent — safe to re-run.
 2. Install [mise](https://mise.jdx.dev/) runtime manager
 3. Add apt repos for de-snapped apps (Mozilla PPA for Firefox, Microsoft repo for VS Code)
 4. Remove snap versions of Firefox, VS Code, VLC
-5. `apt install` Firefox, VS Code, VLC from the new repos
+5. `apt install` Firefox, VS Code, VLC from the new repos + all packages from `packages.txt`
 
-**Auth & sync (6-7)**
+**Desktop apps (6-7)**
 
-6. Authenticate with GitHub via `gh auth login`
-7. Prompt to sign into Firefox Sync (passwords needed for later steps)
+6. Install [Anki](https://apps.ankiweb.net/) (latest release from GitHub)
+7. Install [Talon](https://talonvoice.com/) voice control (extracted to `~/talon/`)
 
-**Project infra (8-10)**
+**Auth & sync (8-9)**
 
-8. Install PostgreSQL and create superuser `y`
-9. Clone `rss-reader` and `wtp` to `~/Desktop/`
-10. Install runtimes via mise (bun globally; Erlang + Elixir per wtp's `.tool-versions`) and set up each project
+8. Authenticate with GitHub via `gh auth login`
+9. Prompt to sign into Firefox Sync (passwords needed for later steps)
 
-**Dotfiles (11-13)**
+**Project infra (10-12)**
 
-11. Create target directories (`~/.claude`, `~/.config/Code/User`)
-12. Symlink config files (see table below)
-13. Install VS Code extensions from `vscode/extensions.txt`
+10. Install PostgreSQL and create superuser `y`
+11. Clone `rss-reader` and `wtp` to `~/Desktop/`
+12. Install runtimes via mise (bun globally; Erlang + Elixir per wtp's `.tool-versions`) and set up each project
 
-**Summary (14)**
+**Dotfiles (13-15)**
 
-14. Print status and manual next steps
+13. Create target directories (`~/.claude`, `~/.config/Code/User`)
+14. Symlink config files (see table below)
+15. Install VS Code extensions from `vscode/extensions.txt`
+
+**Summary (16)**
+
+16. Print status and manual next steps
 
 ## What gets symlinked
 
@@ -70,14 +75,16 @@ The script has 14 sections. Each is idempotent — safe to re-run.
 
 - [ ] `source ~/.bashrc`
 - [ ] VS Code: sign into GitHub (Settings Sync, extensions)
+- [ ] Sign into Anki (for syncing decks across devices)
 - [ ] Install Claude Code (`npm install -g @anthropic-ai/claude-code` or via separate installer)
 
 ## Other files in this repo
 
 | File | Purpose |
 |---|---|
+| `packages.txt` | Apt packages installed by step 5 (Chinese input, CLI tools, Erlang build deps, etc.) |
 | `snaps.txt` | Inventory of default Ubuntu snaps and which ones get replaced |
-| `vscode/extensions.txt` | VS Code extensions installed by step 13 |
+| `vscode/extensions.txt` | VS Code extensions installed by step 15 |
 | `.bashrc.bak` | Pre-dotfiles-repo backup of `.bashrc` |
 
 ## Re-running

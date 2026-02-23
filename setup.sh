@@ -14,7 +14,7 @@ sudo apt update -qq
 sudo apt install -y -qq jq curl software-properties-common gpg \
   build-essential autoconf m4 libncurses-dev libssl-dev  # Erlang/OTP build deps
 
-# Guard: gh (GitHub CLI) is required by steps 6 and 9
+# Guard: gh (GitHub CLI) is required by steps 8 and 11
 if ! command -v gh &>/dev/null; then
   echo "ERROR: 'gh' (GitHub CLI) is required but not installed."
   echo "       Install it with: sudo apt install -y gh"
@@ -89,8 +89,64 @@ echo "==> Updating apt and installing packages..."
 sudo apt update -qq
 sudo apt install -y firefox code vlc
 
+PACKAGES_FILE="$DOTFILES_DIR/packages.txt"
+if [ -f "$PACKAGES_FILE" ]; then
+  mapfile -t pkgs < <(grep -v '^#' "$PACKAGES_FILE" | grep -v '^$')
+  if [ ${#pkgs[@]} -gt 0 ]; then
+    echo "==> Installing ${#pkgs[@]} packages from packages.txt..."
+    sudo apt install -y "${pkgs[@]}"
+  fi
+fi
+
 # ----------------------------------------------------------------
-# 6. GitHub authentication
+# 6. Install Anki
+# ----------------------------------------------------------------
+if command -v anki &>/dev/null; then
+  echo "==> Anki already installed, skipping."
+else
+  echo "==> Installing Anki (latest release from GitHub)..."
+  ANKI_RELEASE_URL=$(curl -fsSL https://api.github.com/repos/ankitects/anki/releases \
+    | jq -r '[.[] | select(.assets | length > 0)][0].assets[] | select(.name | test("linux.*\\.tar\\.zst$")) | .browser_download_url')
+  if [ -n "$ANKI_RELEASE_URL" ]; then
+    ANKI_TMP=$(mktemp -d)
+    curl -fsSL -o "$ANKI_TMP/anki.tar.zst" "$ANKI_RELEASE_URL"
+    tar --zstd -xf "$ANKI_TMP/anki.tar.zst" -C "$ANKI_TMP"
+    ANKI_INSTALL_DIR=$(find "$ANKI_TMP" -maxdepth 1 -type d -name 'anki-*' | head -1)
+    if [ -d "$ANKI_INSTALL_DIR" ] && [ -f "$ANKI_INSTALL_DIR/install.sh" ]; then
+      sudo bash "$ANKI_INSTALL_DIR/install.sh"
+      echo "   [ok]  Anki installed"
+    else
+      echo "   [WARN] Could not find install.sh in Anki archive — install manually"
+    fi
+    rm -rf "$ANKI_TMP"
+  else
+    echo "   [WARN] Could not determine Anki download URL — install manually"
+  fi
+fi
+
+# ----------------------------------------------------------------
+# 7. Install Talon
+# ----------------------------------------------------------------
+if [ -f "$HOME/talon/run.sh" ]; then
+  echo "==> Talon already installed, skipping."
+else
+  echo "==> Installing Talon..."
+  TALON_TMP=$(mktemp -d)
+  HTTP_STATUS=$(curl -fsSL -o "$TALON_TMP/talon.tar.xz" -w "%{http_code}" \
+    "https://talonvoice.com/dl/latest/talon-linux.tar.xz" 2>/dev/null) || true
+  if [ -f "$TALON_TMP/talon.tar.xz" ] && [ "$HTTP_STATUS" = "200" ]; then
+    tar -xJf "$TALON_TMP/talon.tar.xz" -C "$HOME"
+    echo "   [ok]  Talon extracted to ~/talon/"
+  else
+    echo "   [WARN] Talon download failed (HTTP $HTTP_STATUS)."
+    echo "          Talon may require beta access. Install manually:"
+    echo "          https://talonvoice.com/"
+  fi
+  rm -rf "$TALON_TMP"
+fi
+
+# ----------------------------------------------------------------
+# 8. GitHub authentication
 # ----------------------------------------------------------------
 echo "==> Authenticating with GitHub..."
 if gh auth status &>/dev/null; then
@@ -100,7 +156,7 @@ else
 fi
 
 # ----------------------------------------------------------------
-# 7. Firefox Sync reminder
+# 9. Firefox Sync reminder
 # ----------------------------------------------------------------
 echo ""
 echo "==> ACTION REQUIRED: Sign into Firefox Sync"
@@ -114,7 +170,7 @@ else
 fi
 
 # ----------------------------------------------------------------
-# 8. Install PostgreSQL and create wtp DB user
+# 10. Install PostgreSQL and create wtp DB user
 # ----------------------------------------------------------------
 echo "==> Setting up PostgreSQL..."
 sudo apt install -y -qq postgresql
@@ -126,7 +182,7 @@ else
 fi
 
 # ----------------------------------------------------------------
-# 9. Clone private repos
+# 11. Clone private repos
 # ----------------------------------------------------------------
 echo "==> Cloning private repos..."
 for repo in rss-reader wtp yr_workspace; do
@@ -139,7 +195,7 @@ for repo in rss-reader wtp yr_workspace; do
 done
 
 # ----------------------------------------------------------------
-# 10. Install runtimes via mise and set up projects
+# 12. Install runtimes via mise and set up projects
 # ----------------------------------------------------------------
 echo "==> Installing runtimes via mise..."
 MISE="$HOME/.local/bin/mise"
@@ -156,13 +212,13 @@ echo "==> Setting up wtp..."
 (cd "$HOME/Desktop/wtp" && "$MISE" exec -- mix local.hex --force && "$MISE" exec -- mix local.rebar --force && "$MISE" exec -- mix setup)
 
 # ----------------------------------------------------------------
-# 11. Create target directories
+# 13. Create target directories
 # ----------------------------------------------------------------
 mkdir -p "$HOME/.claude"
 mkdir -p "$HOME/.config/Code/User"
 
 # ----------------------------------------------------------------
-# 12. Symlink dotfiles
+# 14. Symlink dotfiles
 # ----------------------------------------------------------------
 link() {
   local src="$1" dest="$2"
@@ -192,7 +248,7 @@ link "$DOTFILES_DIR/vscode/keybindings.json"       "$HOME/.config/Code/User/keyb
 chmod +x "$DOTFILES_DIR/.claude/statusline-command.sh"
 
 # ----------------------------------------------------------------
-# 13. Install VSCode extensions (if code is available)
+# 15. Install VSCode extensions (if code is available)
 # ----------------------------------------------------------------
 EXTENSIONS_FILE="$DOTFILES_DIR/vscode/extensions.txt"
 if command -v code &>/dev/null && [ -f "$EXTENSIONS_FILE" ]; then
@@ -207,12 +263,18 @@ else
 fi
 
 # ----------------------------------------------------------------
-# 14. Summary
+# 16. Summary
 # ----------------------------------------------------------------
 echo ""
 echo "Done!"
 echo ""
 echo "  De-snapped apps: firefox, code, vlc"
+PACKAGES_FILE="$DOTFILES_DIR/packages.txt"
+if [ -f "$PACKAGES_FILE" ]; then
+  PKG_COUNT=$(grep -v '^#' "$PACKAGES_FILE" | grep -cv '^$' || true)
+  echo "  Extra apt pkgs:  $PKG_COUNT (from packages.txt)"
+fi
+echo "  Desktop apps:    anki, talon"
 echo "  Cloned repos:    ~/Desktop/rss-reader, ~/Desktop/wtp, ~/Desktop/yr_workspace"
 echo ""
 echo "  Linked files:"
@@ -227,4 +289,5 @@ echo ""
 echo "Manual next steps:"
 echo "  - Run 'source ~/.bashrc' to reload shell config"
 echo "  - Open VS Code and sign into GitHub (for Settings Sync, extensions, etc.)"
+echo "  - Sign into Anki (for syncing decks across devices)"
 echo "  - Install Claude Code separately if needed"

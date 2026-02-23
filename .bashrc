@@ -104,6 +104,7 @@ alias apc="sudo apt autopurge && sudo apt autoclean"
 # alias badsnap='sudo snap-store --quit && sudo snap refresh snap-store && sudo snap refresh'
 
 alias gs="git status"
+alias glo="git log --oneline"
 alias gb="git branch"
 alias gc="git checkout"
 alias gcb="git checkout -b"

@@ -1,0 +1,37 @@
+# Apt packages installed by setup.sh
+#
+# One package per line. Lines starting with # are comments.
+# Manually maintained — edit when you add or remove packages.
+
+# --- Chinese input ---
+ibus-libpinyin
+
+# --- Chinese typesetting (XeLaTeX) ---
+texlive-lang-chinese
+texlive-xetex
+texlive-fonts-recommended
+
+# --- Erlang/OTP extended build deps ---
+fop
+libgl1-mesa-dev
+libglu1-mesa-dev
+libssh-dev
+libwxgtk3.2-dev
+libwxgtk-webview3.2-dev
+libxml2-utils
+openjdk-11-jdk
+unixodbc-dev
+xsltproc
+
+# --- CLI utilities ---
+inotify-tools
+pandoc
+tree
+xclip
+zstd
+
+# --- Desktop apps ---
+gnome-shell-extension-appindicator
+
+# --- Database ---
+postgresql-contrib
