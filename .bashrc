@@ -95,7 +95,7 @@ alias soba="source ~/.bashrc"
 
 alias tln='~/talon/run.sh'
 alias copy="rsync -avh --progress"
-alias susssync='rsync -av --delete --progress "/home/ysussman/Desktop/40 Paper Trail - 2026/" "/media/ysussman/ybox2/ybox_backup/backup_sussworld/40 Paper Trail - 2026/" && rsync -av --delete --progress "/home/ysussman/Desktop/40 Paper Trail - 2026/" "/media/ysussman/ybox3/ybox_backup/backup_sussworld/40 Paper Trail - 2026/"'
+alias susssync='rsync -av --delete --progress "/home/ysussman/Desktop/DATALAKE_2026/" "/media/ysussman/ybox2/ybox_backup/backup_sussworld/DATALAKE_2026/" && rsync -av --delete --progress "/home/ysussman/Desktop/DATALAKE_2026/" "/media/ysussman/ybox3/ybox_backup/backup_sussworld/DATALAKE_2026/"'
 
 alias au="sudo apt update"
 alias alu="sudo apt list --upgradable"
