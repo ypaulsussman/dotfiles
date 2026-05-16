@@ -162,6 +162,12 @@ alias htmlify='function _convert_to_html() { pandoc "$1" -f markdown -t html -s 
 
 alias wtpserve="cd ~/Desktop/wtp && mix phx.server"
 alias wtpbackup='DEST="/home/ysussman/Desktop/yr_workspace/40 Paper Trail - 2026"; TS=$(date -u +%Y-%m-%dT%H%M%S); rm -rf "$DEST"/wtp_backup--*; mkdir -p "$DEST/wtp_backup--$TS" && cd ~/Desktop/wtp && ./scripts/backup.exs "$DEST/wtp_backup--$TS"'
+# Paper Trail SSG: rebuild the blog locally (drafts included, for the trial period)
+alias ptwrebuild='(cd "/home/ysussman/Desktop/yr_workspace/40 Paper Trail - 2026/blog_plans/ssg_pipeline" && mise exec -- ./build.sh --include-drafts)'
+# Paper Trail SSG: live local dev — watch-rebuild in the background, serve in the foreground (Ctrl-C stops both)
+alias ptwserve='(cd "/home/ysussman/Desktop/yr_workspace/40 Paper Trail - 2026/blog_plans/ssg_pipeline" && { mise exec -- ./build.sh --include-drafts --watch & } && trap "kill %1 2>/dev/null" EXIT && ./serve.sh)'
 
 alias c="claude"
-alias rss="mise exec bun -- bun run ~/Desktop/rss-reader/src/index.ts"
+
+# Are you ever gonna use this again? If not, prolly yeet...
+# alias rss="mise exec bun -- bun run ~/Desktop/rss-reader/src/index.ts"
