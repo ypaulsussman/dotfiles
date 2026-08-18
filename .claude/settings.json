@@ -1,51 +1,66 @@
 {
-  "alwaysThinkingEnabled": true,
-  "outputStyle": "explanatory",
   "permissions": {
     "allow": [
-      "Bash --cmd 'ls*'",
-      "Bash --cmd 'tree*'",
-      "Bash --cmd 'grep*'",
-
-      "Bash --cmd 'cat*'",
-      "Bash --cmd 'head*'",
-      "Bash --cmd 'tail*'",
-      "Bash --cmd 'wc*'",
-      "Bash --cmd 'file*'",
-      "Bash --cmd 'find*'",
-      "Bash --cmd 'stat*'",
-      "Bash --cmd 'du*'",
-      "Bash --cmd 'which*'",
-      "Bash --cmd 'pwd'",
-
-      "Bash --cmd 'diff*'",
-
-      "Bash --cmd 'git status*'",
-      "Bash --cmd 'git log*'",
-      "Bash --cmd 'git diff*'",
-      "Bash --cmd 'git branch*'",
-      "Bash --cmd 'git show*'",
-      "Bash --cmd 'git stash list*'",
-      "Bash --cmd 'git remote -v*'",
-
-      "Bash --cmd 'mise*'",
-      "Bash --cmd 'mix*'",
-      "Bash --cmd 'iex*'",
-      "Bash --cmd 'elixir*'",
-
-      "Bash --cmd 'echo*'",
-      "Bash --cmd 'env*'",
-      "Bash --cmd 'printenv*'",
-      "Bash --cmd 'uname*'"
+      "Bash(pwd:*)",
+      "Bash(grep *)",
+      "Bash(rg *)",
+      "Bash(ls:*)",
+      "Bash(tree:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(wc:*)",
+      "Bash(file:*)",
+      "Bash(find:*)",
+      "Bash(stat:*)",
+      "Bash(du:*)",
+      "Bash(which:*)",
+      "Bash(diff:*)",
+      "Bash(git status:*)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git branch:*)",
+      "Bash(git show:*)",
+      "Bash(git stash list:*)",
+      "Bash(git remote -v:*)",
+      "Bash(mise:*)",
+      "Bash(mix:*)",
+      "Bash(iex:*)",
+      "Bash(elixir:*)",
+      "Bash(echo:*)",
+      "Bash(env:*)",
+      "Bash(printenv:*)",
+      "Bash(uname:*)"
     ],
     "ask": [
-      "Bash --cmd '/\\brm\\b/'",
-      "Bash --cmd '/\\bgit push/'",
-      "Bash --cmd '/\\bcurl\\b/'"
+      "Bash(rm:*)",
+      "Bash(sudo rm:*)",
+      "Bash(git push:*)",
+      "Bash(curl:*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/hooks/session-checklist.sh\"",
+            "timeout": 10
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
     "type": "command",
     "command": "bash /home/ysussman/.claude/statusline-command.sh"
-  }
+  },
+  "outputStyle": "explanatory",
+  "alwaysThinkingEnabled": true,
+  "effortLevel": "xhigh",
+  "tui": "fullscreen",
+  "skipAutoPermissionPrompt": true,
+  "voiceEnabled": false,
+  "agentPushNotifEnabled": true
 }

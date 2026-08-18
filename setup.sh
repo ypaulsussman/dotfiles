@@ -217,6 +217,7 @@ echo "==> Setting up wtp..."
 mkdir -p "$HOME/.claude"
 mkdir -p "$HOME/.config/Code/User"
 mkdir -p "$HOME/.config/autostart"
+mkdir -p "$HOME/.claude/hooks"
 
 # ----------------------------------------------------------------
 # 14. Symlink dotfiles
@@ -248,6 +249,7 @@ link "$DOTFILES_DIR/.psqlrc"                       "$HOME/.psqlrc"
 link "$DOTFILES_DIR/.claude/settings.json"         "$HOME/.claude/settings.json"
 link "$DOTFILES_DIR/.claude/CLAUDE.md"             "$HOME/.claude/CLAUDE.md"
 link "$DOTFILES_DIR/.claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
+link "$DOTFILES_DIR/.claude/hooks/session-checklist.sh" "$HOME/.claude/hooks/session-checklist.sh"
 link "$DOTFILES_DIR/vscode/settings.json"          "$HOME/.config/Code/User/settings.json"
 link "$DOTFILES_DIR/vscode/keybindings.json"       "$HOME/.config/Code/User/keybindings.json"
 link "$DOTFILES_DIR/autostart/startup-windows.desktop" "$HOME/.config/autostart/startup-windows.desktop"
@@ -255,6 +257,7 @@ link "$DOTFILES_DIR/autostart/startup-windows.desktop" "$HOME/.config/autostart/
 # Make scripts executable
 chmod +x "$DOTFILES_DIR/.claude/statusline-command.sh"
 chmod +x "$DOTFILES_DIR/autostart/startup-windows.sh"
+chmod +x "$DOTFILES_DIR/.claude/hooks/session-checklist.sh"
 
 # ----------------------------------------------------------------
 # 15. Install VSCode extensions (if code is available)

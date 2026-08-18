@@ -61,6 +61,7 @@ The script has 16 sections. Each is idempotent — safe to re-run.
 | `.claude/settings.json` | `~/.claude/settings.json` | Claude Code permissions, thinking mode, status line |
 | `.claude/CLAUDE.md` | `~/.claude/CLAUDE.md` | Claude Code behavioral guidelines |
 | `.claude/statusline-command.sh` | `~/.claude/statusline-command.sh` | Status line: dir, branch, context % |
+| `.claude/hooks/session-checklist.sh` | `~/.claude/hooks/session-checklist.sh` | SessionStart hook: injects a pre-flight checklist |
 | `vscode/settings.json` | `~/.config/Code/User/settings.json` | Editor prefs, formatters, theme, Copilot |
 | `vscode/keybindings.json` | `~/.config/Code/User/keybindings.json` | Ctrl+Tab nav, swapped Ctrl+O/P, terminal focus |
 | `autostart/startup-windows.desktop` | `~/.config/autostart/startup-windows.desktop` | Four windows opened automatically at login |
@@ -78,8 +79,8 @@ you. Check them all:
 
 ```bash
 for f in ~/.bashrc ~/.psqlrc ~/.claude/settings.json ~/.claude/CLAUDE.md \
-         ~/.claude/statusline-command.sh ~/.config/Code/User/settings.json \
-         ~/.config/Code/User/keybindings.json \
+         ~/.claude/statusline-command.sh ~/.claude/hooks/session-checklist.sh \
+         ~/.config/Code/User/settings.json ~/.config/Code/User/keybindings.json \
          ~/.config/autostart/startup-windows.desktop; do
   [ -L "$f" ] && echo "  ok     $f" || echo "  DRIFT  $f"
 done

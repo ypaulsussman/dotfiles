@@ -35,5 +35,9 @@
   {
     "key": "ctrl+shift+k",
     "command": "workbench.action.terminal.focusPrevious"
+  },
+  {
+    "key": "ctrl+q",
+    "command": "-workbench.action.quit"
   }
 ]
