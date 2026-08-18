@@ -1,0 +1,5 @@
+# setup.sh's link() moves a drifted regular file to <dest>.bak before linking,
+# and manual repairs tend to leave a <file>.pre-symlink alongside. Both are
+# scratch copies to reconcile and delete, never things to track.
+*.bak
+*.pre-symlink
