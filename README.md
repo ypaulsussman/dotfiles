@@ -65,6 +65,44 @@ The script has 16 sections. Each is idempotent — safe to re-run.
 | `vscode/keybindings.json` | `~/.config/Code/User/keybindings.json` | Ctrl+Tab nav, swapped Ctrl+O/P, terminal focus |
 | `autostart/startup-windows.desktop` | `~/.config/autostart/startup-windows.desktop` | Four windows opened automatically at login |
 
+### Checking for drift
+
+Every destination above is a *symlink into this repo*, so editing the file on
+the machine edits the repo — that's the whole point, and it's why there's no
+copy step to remember.
+
+A symlink can quietly stop being one: an editor that writes-and-renames, a
+restore from backup, or a `cp` over the destination all leave a regular file
+behind. From then on the machine and the repo drift silently, and nothing warns
+you. Check them all:
+
+```bash
+for f in ~/.bashrc ~/.psqlrc ~/.claude/settings.json ~/.claude/CLAUDE.md \
+         ~/.claude/statusline-command.sh ~/.config/Code/User/settings.json \
+         ~/.config/Code/User/keybindings.json \
+         ~/.config/autostart/startup-windows.desktop; do
+  [ -L "$f" ] && echo "  ok     $f" || echo "  DRIFT  $f"
+done
+```
+
+### Re-linking a drifted file
+
+**Reconcile before you link.** `ln -sf` overwrites the destination, so the
+machine's version — which is the newer one, by definition, since that's how it
+drifted — is gone the moment you link. Keep it, diff it, fold what you want
+into the repo copy, *then* link:
+
+```bash
+cp ~/.bashrc ~/.bashrc.pre-symlink                     # 1. preserve the live version
+diff ~/.bashrc.pre-symlink .bashrc                     # 2. reconcile into the repo copy
+ln -sf "$PWD/.bashrc" ~/.bashrc                        # 3. now it's safe to link
+```
+
+`setup.sh` step 14 does the same thing automatically on a fresh machine, moving
+any regular file it finds to `<dest>.bak` before linking. That backup is worth
+reading rather than deleting — it's the drifted content.
+
+
 ## Login autostart
 
 **What it does.** Opens the four windows wanted on every login, so a machine

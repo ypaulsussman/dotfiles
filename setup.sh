@@ -221,6 +221,12 @@ mkdir -p "$HOME/.config/autostart"
 # ----------------------------------------------------------------
 # 14. Symlink dotfiles
 # ----------------------------------------------------------------
+# Symlink src -> dest, preserving anything already there.
+#
+# A regular file at dest means it drifted out of the repo at some point, and its
+# contents are newer than what's here. It's moved to dest.bak rather than
+# clobbered -- reconcile that backup into the repo copy before deleting it.
+# See "Checking for drift" in the README.
 link() {
   local src="$1" dest="$2"
   if [ -L "$dest" ] && [ "$(readlink -f "$dest")" = "$(readlink -f "$src")" ]; then

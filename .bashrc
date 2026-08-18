@@ -94,7 +94,7 @@ alias coba="code ~/.bashrc"
 alias soba="source ~/.bashrc"
 
 alias tln='~/talon/run.sh'
-alias copy="rsync -avh --progress"
+alias supercopy="rsync -avh --progress"
 alias susssync='rsync -av --delete --progress "/home/ysussman/Desktop/DATALAKE_2026/" "/media/ysussman/ybox2/ybox_backup/backup_sussworld/DATALAKE_2026/" && rsync -av --delete --progress "/home/ysussman/Desktop/DATALAKE_2026/" "/media/ysussman/ybox3/ybox_backup/backup_sussworld/DATALAKE_2026/"'
 
 alias au="sudo apt update"
@@ -161,13 +161,41 @@ alias gcam="git add -A && git commit -m"
 alias htmlify='function _convert_to_html() { pandoc "$1" -f markdown -t html -s -o "${1%.*}.html"; };_convert_to_html'
 
 alias wtpserve="cd ~/Desktop/wtp && mix phx.server"
-alias wtpbackup='DEST="/home/ysussman/Desktop/yr_workspace/40 Paper Trail - 2026"; TS=$(date -u +%Y-%m-%dT%H%M%S); rm -rf "$DEST"/wtp_backup--*; mkdir -p "$DEST/wtp_backup--$TS" && cd ~/Desktop/wtp && ./scripts/backup.exs "$DEST/wtp_backup--$TS"'
-# Paper Trail SSG: rebuild the blog locally (drafts included, for the trial period)
-alias ptwrebuild='(cd "/home/ysussman/Desktop/yr_workspace/40 Paper Trail - 2026/blog_plans/ssg_pipeline" && mise exec -- ./build.sh --include-drafts)'
-# Paper Trail SSG: live local dev — watch-rebuild in the background, serve in the foreground (Ctrl-C stops both)
-alias ptwserve='(cd "/home/ysussman/Desktop/yr_workspace/40 Paper Trail - 2026/blog_plans/ssg_pipeline" && { mise exec -- ./build.sh --include-drafts --watch & } && trap "kill %1 2>/dev/null" EXIT && ./serve.sh)'
+alias wtpbackup='DEST="/home/ysussman/Desktop/yr_workspace/40 Paper Trail - 2026"; TS=$(date -u +%Y-%m-%dT%H%M%S); rm -rf "$DEST"/wtp_backup--*; mkdir -p "$DEST/wtp_backup--$TS" && cd ~/Desktop/wtp && ./scripts/backup.exs "$DEST/wtp_backup--$TS"'   
+
+alias hzaserve="cd ~/Desktop/hanzi-expand/ && .venv/bin/hanzi-expand serve"
 
 alias c="claude"
 
-# Are you ever gonna use this again? If not, prolly yeet...
-# alias rss="mise exec bun -- bun run ~/Desktop/rss-reader/src/index.ts"
+# Paper Trail SSG: rebuild the blog locally (drafts included, for the trial period)
+# alias ptwrebuild='(cd "/home/ysussman/Desktop/yr_workspace/40 Paper Trail - 2026/blog_plans/ssg_pipeline" && mise exec -- ./build.sh --include-drafts)'
+# Paper Trail SSG: live local dev — watch-rebuild in the background, serve in the foreground (Ctrl-C stops both)
+# alias ptwserve='(cd "/home/ysussman/Desktop/yr_workspace/40 Paper Trail - 2026/blog_plans/ssg_pipeline" && { mise exec -- ./build.sh --include-drafts --watch & } && trap "kill %1 2>/dev/null" EXIT && ./serve.sh)'
+# alias rss="mise exec bun -- bun run ~/Desktop/rss-reader/src/index.ts"                                  
+
+# --- startupservices ---------------------------------------------------
+# _svcpayload <tab-label> <alias-or-command>  ->  the -e payload for one tab.
+# bash -ic re-sources this .bashrc, so the aliases above stay the single
+# source of truth; `exec bash` keeps the tab alive if the service dies.
+_svcpayload() {
+    printf "bash -ic '%s; ec=\$?; echo; echo \"[%s exited rc=\$ec]\"; exec bash'" "$2" "$1"
+}
+
+# three tabs in one window
+startupservices() {
+    gnome-terminal --geometry=110x30 \
+        --window -t talon -e "$(_svcpayload talon tln)" \
+        --tab    -t wtp   -e "$(_svcpayload wtp   wtpserve)" \
+        --tab    -t hanzi -e "$(_svcpayload hanzi hzaserve)" 2>/dev/null
+}
+
+# three separate windows (the original)
+_svcwin() {
+    gnome-terminal --title="$1" --geometry="$2" -- \
+        bash -ic "$3; printf '\n[%s exited (rc=%s)]\n' '$1' \"\$?\"; exec bash"
+}
+startupwindows() {
+    _svcwin talon '100x20+0+0'     tln
+    _svcwin wtp   '100x24+0+430'   wtpserve
+    _svcwin hanzi '100x24+830+430' hzaserve
+}
