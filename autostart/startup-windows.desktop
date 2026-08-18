@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Startup windows
+Comment=Open dev services, Files, Sound settings, and System Monitor at login
+# The \\$ escaping is required by the Desktop Entry spec for a $ inside a quoted
+# Exec value; bash expands $HOME, keeping this portable across usernames.
+Exec=bash -c "exec \\$HOME/Desktop/dotfiles/autostart/startup-windows.sh"
+Icon=utilities-terminal
+Terminal=false
+X-GNOME-Autostart-enabled=true
+X-GNOME-Autostart-Delay=5

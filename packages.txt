@@ -32,6 +32,7 @@ zstd
 
 # --- Desktop apps ---
 gnome-shell-extension-appindicator
+wmctrl  # positions the login windows; see autostart/startup-windows.sh
 
 # --- Database ---
 postgresql-contrib

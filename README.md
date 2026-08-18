@@ -63,6 +63,72 @@ The script has 16 sections. Each is idempotent — safe to re-run.
 | `.claude/statusline-command.sh` | `~/.claude/statusline-command.sh` | Status line: dir, branch, context % |
 | `vscode/settings.json` | `~/.config/Code/User/settings.json` | Editor prefs, formatters, theme, Copilot |
 | `vscode/keybindings.json` | `~/.config/Code/User/keybindings.json` | Ctrl+Tab nav, swapped Ctrl+O/P, terminal focus |
+| `autostart/startup-windows.desktop` | `~/.config/autostart/startup-windows.desktop` | Four windows opened automatically at login |
+
+## Login autostart
+
+**What it does.** Opens the four windows wanted on every login, so a machine
+restart doesn't mean four manual launches:
+
+1. **Dev services** — one `gnome-terminal` window with three tabs: `talon`,
+   `wtp` (Phoenix), and `hanzi-expand`. Each tab runs the matching alias from
+   `.bashrc` and drops to a live shell if the service exits, so a crash leaves
+   the error on screen instead of closing the tab.
+2. **Files** — a Nautilus window at `~/Desktop`.
+3. **Settings** — `gnome-control-center` on the Sound panel.
+4. **System Monitor**.
+
+**Where it lives.**
+
+| File | Role |
+|---|---|
+| `autostart/startup-windows.desktop` | Symlinked into `~/.config/autostart/`, where GNOME looks for login entries. Sets `X-GNOME-Autostart-Delay=5` so GNOME Shell is up before the windows open. |
+| `autostart/startup-windows.sh` | The launcher the `.desktop` calls. **Not symlinked** — the `Exec=` line runs it in place inside this repo. |
+
+**How the terminal tabs work.** The `.desktop` can only run one command, hence
+the launcher script. The script calls `bash -ic 'startupservices'`; the `-i`
+makes bash source `~/.bashrc`, which is where `startupservices` and the aliases
+it invokes (`tln`, `wtpserve`, `hzaserve`) are defined. Keeping the aliases as
+the single source of truth means editing an alias updates the login behavior
+too, with nothing to keep in sync.
+
+Multi-tab requires one `gnome-terminal` invocation using the
+`--window … --tab … --tab …` form. Because `--` swallows everything after it, it
+can only describe one terminal, so each tab's command is passed with the
+deprecated `-e` instead. If `-e` is ever removed, `startupwindows` in `.bashrc`
+does the same thing as three separate windows.
+
+**Debugging.** The script redirects all output to
+`~/.cache/startup-windows.log`. Check there first if a window doesn't appear.
+
+**Disabling.** Delete `~/.config/autostart/startup-windows.desktop`, or flip
+`X-GNOME-Autostart-enabled` to `false` in the repo copy.
+
+**Window placement.** Each window is moved to its own half-monitor:
+
+| Window | Monitor | Position |
+|---|---|---|
+| Settings (Sound) | left external, `DP-1-0.3` | top half |
+| System Monitor | left external, `DP-1-0.3` | bottom half |
+| Terminal (3 tabs) | right external, `DP-1-0.2` | top half |
+| Files (`~/Desktop`) | right external, `DP-1-0.2` | bottom half |
+
+Only `gnome-terminal` has a `--geometry` flag, so placement goes through
+**`wmctrl`** (in `packages.txt`) for uniformity. Without it the four windows
+still open, just unplaced, and the log says so.
+
+The coordinates are hardcoded constants at the top of `startup-windows.sh`,
+derived from `xrandr --query` plus the 32px the GNOME top bar reserves via
+`_NET_WORKAREA`. **Replugging or rearranging monitors means redoing that
+arithmetic** — the comment block above the constants shows the working.
+
+Identifying which window to move is the fiddly part. All `gnome-terminal`
+windows share one `gnome-terminal-server` process and therefore one `WM_CLASS`,
+so the script snapshots the matching window IDs *before* launching each app and
+moves whichever ID is new. Failing that (Files, Settings, and System Monitor are
+single-instance, so launching an already-running one just raises it), it falls
+back to the most recent matching window.
+
 
 ## Projects set up by the script
 
