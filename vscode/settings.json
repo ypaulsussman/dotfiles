@@ -197,5 +197,5 @@
   "workbench.editor.enablePreview": false,
   "claudeCode.preferredLocation": "panel",
   "claudeCode.useTerminal": true,
-  "workbench.colorTheme": "Solarized Dark",
+  "workbench.colorTheme": "Solarized Light",
 }
