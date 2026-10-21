@@ -181,15 +181,14 @@ _svcpayload() {
     printf "bash -ic '%s; ec=\$?; echo; echo \"[%s exited rc=\$ec]\"; exec bash'" "$2" "$1"
 }
 
-# three tabs in one window
+# two tabs in one window (hzaserve no longer starts at login; run it by hand)
 startupservices() {
     gnome-terminal --geometry=110x30 \
         --window -t talon -e "$(_svcpayload talon tln)" \
-        --tab    -t wtp   -e "$(_svcpayload wtp   wtpserve)" \
-        --tab    -t hanzi -e "$(_svcpayload hanzi hzaserve)" 2>/dev/null
+        --tab    -t wtp   -e "$(_svcpayload wtp   wtpserve)" 2>/dev/null
 }
 
-# three separate windows (the original)
+# two separate windows (the original, minus hanzi)
 _svcwin() {
     gnome-terminal --title="$1" --geometry="$2" -- \
         bash -ic "$3; printf '\n[%s exited (rc=%s)]\n' '$1' \"\$?\"; exec bash"
@@ -197,5 +196,4 @@ _svcwin() {
 startupwindows() {
     _svcwin talon '100x20+0+0'     tln
     _svcwin wtp   '100x24+0+430'   wtpserve
-    _svcwin hanzi '100x24+830+430' hzaserve
 }

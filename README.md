@@ -106,16 +106,20 @@ reading rather than deleting — it's the drifted content.
 
 ## Login autostart
 
-**What it does.** Opens the four windows wanted on every login, so a machine
-restart doesn't mean four manual launches:
+**What it does.** Opens the five windows wanted on every login, so a machine
+restart doesn't mean five manual launches:
 
-1. **Dev services** — one `gnome-terminal` window with three tabs: `talon`,
-   `wtp` (Phoenix), and `hanzi-expand`. Each tab runs the matching alias from
-   `.bashrc` and drops to a live shell if the service exits, so a crash leaves
-   the error on screen instead of closing the tab.
+1. **Dev services** — one `gnome-terminal` window with two tabs: `talon` and
+   `wtp` (Phoenix). Each tab runs the matching alias from `.bashrc` and drops
+   to a live shell if the service exits, so a crash leaves the error on screen
+   instead of closing the tab. (`hanzi-expand` used to be a third tab; it's now
+   started by hand with `hzaserve`.)
 2. **Files** — a Nautilus window at `~/Desktop`.
 3. **Settings** — `gnome-control-center` on the Sound panel.
 4. **System Monitor**.
+5. **Claude Desktop** — on the laptop panel of the *second* workspace, so
+   `Super+PageDown` after login lands on it with both external monitors free
+   for Firefox and VS Code.
 
 **Where it lives.**
 
@@ -127,15 +131,15 @@ restart doesn't mean four manual launches:
 **How the terminal tabs work.** The `.desktop` can only run one command, hence
 the launcher script. The script calls `bash -ic 'startupservices'`; the `-i`
 makes bash source `~/.bashrc`, which is where `startupservices` and the aliases
-it invokes (`tln`, `wtpserve`, `hzaserve`) are defined. Keeping the aliases as
+it invokes (`tln`, `wtpserve`) are defined. Keeping the aliases as
 the single source of truth means editing an alias updates the login behavior
 too, with nothing to keep in sync.
 
 Multi-tab requires one `gnome-terminal` invocation using the
-`--window … --tab … --tab …` form. Because `--` swallows everything after it, it
+`--window … --tab …` form. Because `--` swallows everything after it, it
 can only describe one terminal, so each tab's command is passed with the
 deprecated `-e` instead. If `-e` is ever removed, `startupwindows` in `.bashrc`
-does the same thing as three separate windows.
+does the same thing as two separate windows.
 
 **Debugging.** The script redirects all output to
 `~/.cache/startup-windows.log`. Check there first if a window doesn't appear.
@@ -143,18 +147,27 @@ does the same thing as three separate windows.
 **Disabling.** Delete `~/.config/autostart/startup-windows.desktop`, or flip
 `X-GNOME-Autostart-enabled` to `false` in the repo copy.
 
-**Window placement.** Each window is moved to its own half-monitor:
+**Window placement.** Each window is moved to its own monitor region:
 
-| Window | Monitor | Position |
-|---|---|---|
-| Settings (Sound) | left external, `DP-1-0.3` | top half |
-| System Monitor | left external, `DP-1-0.3` | bottom half |
-| Terminal (3 tabs) | right external, `DP-1-0.2` | top half |
-| Files (`~/Desktop`) | right external, `DP-1-0.2` | bottom half |
+| Window | Workspace | Monitor | Position |
+|---|---|---|---|
+| Settings (Sound) | 1st | left external, `DP-1-0.3` | top half |
+| System Monitor | 1st | left external, `DP-1-0.3` | bottom half |
+| Terminal (2 tabs) | 1st | right external, `DP-1-0.2` | top half |
+| Files (`~/Desktop`) | 1st | right external, `DP-1-0.2` | bottom half |
+| Claude Desktop | 2nd | laptop panel, `eDP-1` | full |
 
 Only `gnome-terminal` has a `--geometry` flag, so placement goes through
-**`wmctrl`** (in `packages.txt`) for uniformity. Without it the four windows
-still open, just unplaced, and the log says so.
+**`wmctrl`** (in `packages.txt`) for uniformity. Without it the windows
+still open, just unplaced (and Claude stays on the first workspace), and the
+log says so.
+
+The second-workspace trick leans on two GNOME settings, both current on this
+machine: dynamic workspaces (`org.gnome.mutter dynamic-workspaces true`),
+which guarantee an empty workspace exists right after the first four windows
+land, and `org.gnome.mutter workspaces-only-on-primary false`, which makes
+each workspace span all three monitors rather than just the primary.
+`wmctrl -t` moves the window there without switching your view.
 
 The coordinates are hardcoded constants at the top of `startup-windows.sh`,
 derived from `xrandr --query` plus the 32px the GNOME top bar reserves via
@@ -164,8 +177,8 @@ arithmetic** — the comment block above the constants shows the working.
 Identifying which window to move is the fiddly part. All `gnome-terminal`
 windows share one `gnome-terminal-server` process and therefore one `WM_CLASS`,
 so the script snapshots the matching window IDs *before* launching each app and
-moves whichever ID is new. Failing that (Files, Settings, and System Monitor are
-single-instance, so launching an already-running one just raises it), it falls
+moves whichever ID is new. Failing that (Files, Settings, System Monitor, and
+Claude are single-instance, so launching an already-running one just raises it), it falls
 back to the most recent matching window.
 
 
