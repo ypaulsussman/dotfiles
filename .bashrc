@@ -95,7 +95,24 @@ alias soba="source ~/.bashrc"
 
 alias tln='~/talon/run.sh'
 alias supercopy="rsync -avh --progress"
-alias susssync='rsync -av --delete --progress "/home/ysussman/Desktop/DATALAKE_2026/" "/media/ysussman/ybox2/ybox_backup/backup_sussworld/DATALAKE_2026/" && rsync -av --delete --progress "/home/ysussman/Desktop/DATALAKE_2026/" "/media/ysussman/ybox3/ybox_backup/backup_sussworld/DATALAKE_2026/"'
+# Mirror DATALAKE_2026 to both ybox drives (with --delete). `susssync -n` previews.
+# Checks each drive is mounted, syncs both even if one fails, ends with a verdict.
+# --no-perms/owner/group: exFAT/NTFS can't store them, so rsync would report spurious diffs.
+susssync() {
+	local src="/home/ysussman/Desktop/DATALAKE_2026/" rc=0 box dest
+	for box in ybox2 ybox3; do
+		dest="/media/ysussman/$box/ybox_backup/backup_sussworld/DATALAKE_2026/"
+		if ! mountpoint -q "/media/ysussman/$box"; then
+			echo "✗ $box: not mounted, skipped" >&2; rc=1; continue
+		fi
+		if rsync -rlt --no-perms --no-owner --no-group --modify-window=1 --delete --itemize-changes --info=stats1 "$@" "$src" "$dest"; then
+			echo "✓ $box: $([[ " $* " == *" -n "* ]] && echo previewed || echo synced) $(date +%H:%M)"
+		else
+			echo "✗ $box: rsync failed (exit $?)" >&2; rc=1
+		fi
+	done
+	return $rc
+}
 
 alias au="sudo apt update"
 alias alu="sudo apt list --upgradable"
