@@ -99,12 +99,13 @@ alias supercopy="rsync -avh --progress"
 # Checks each drive is mounted, syncs both even if one fails, ends with a verdict.
 # --no-perms/owner/group: exFAT/NTFS can't store them, so rsync would report spurious diffs.
 susssync() {
-	local src="/home/ysussman/Desktop/DATALAKE_2026/" rc=0 box dest
+	local src="/home/ysussman/Desktop/DATALAKE_2026/" rc=0 box mnt dest
 	for box in ybox2 ybox3; do
-		dest="/media/ysussman/$box/ybox_backup/backup_sussworld/DATALAKE_2026/"
-		if ! mountpoint -q "/media/ysussman/$box"; then
+		# Find the drive by filesystem label, wherever it's mounted (/media or /run/media).
+		if ! mnt=$(findmnt -no TARGET -S "LABEL=$box"); then
 			echo "✗ $box: not mounted, skipped" >&2; rc=1; continue
 		fi
+		dest="$mnt/ybox_backup/backup_sussworld/DATALAKE_2026/"
 		if rsync -rlt --no-perms --no-owner --no-group --modify-window=1 --delete --itemize-changes --info=stats1 "$@" "$src" "$dest"; then
 			echo "✓ $box: $([[ " $* " == *" -n "* ]] && echo previewed || echo synced) $(date +%H:%M)"
 		else
