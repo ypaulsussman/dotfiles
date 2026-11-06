@@ -31,8 +31,11 @@ xclip
 zstd
 
 # --- Desktop apps ---
-gnome-shell-extension-appindicator
-wmctrl  # positions the login windows; see autostart/startup-windows.sh
+# (appindicator now ships in gnome-shell-ubuntu-extensions, installed by default)
+# sends Claude to workspace 2 at login (see README); comments must be on
+# their own line, since setup.sh only skips lines that start with #
+gnome-shell-extension-auto-move-windows
 
 # --- Database ---
-postgresql-contrib
+# (postgresql-contrib is gone in 26.04; contrib modules ship in postgresql-18,
+# which setup.sh installs via the postgresql metapackage)

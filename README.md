@@ -42,13 +42,12 @@ The script has 16 sections. Each is idempotent — safe to re-run.
 11. Clone `rss-reader` and `wtp` to `~/Desktop/`
 12. Install runtimes via mise (bun globally; Erlang + Elixir per wtp's `.tool-versions`) and set up each project
 
-**Dotfiles (13-15)**
+**Dotfiles (13-14)**
 
 13. Create target directories (`~/.claude`, `~/.config/Code/User`)
 14. Symlink config files (see table below)
-15. Install VS Code extensions from `vscode/extensions.txt`
 
-**Summary (16)**
+**Summary (15)**
 
 16. Print status and manual next steps
 
@@ -110,16 +109,17 @@ reading rather than deleting — it's the drifted content.
 restart doesn't mean five manual launches:
 
 1. **Dev services** — one `gnome-terminal` window with two tabs: `talon` and
-   `wtp` (Phoenix). Each tab runs the matching alias from `.bashrc` and drops
+   `wtp` (Phoenix). The `talon` tab only opens in an X11 session (Talon is
+   X11-only and crashes under Wayland); under GNOME/Wayland it's just `wtp`.
+   Each tab runs the matching alias from `.bashrc` and drops
    to a live shell if the service exits, so a crash leaves the error on screen
    instead of closing the tab. (`hanzi-expand` used to be a third tab; it's now
    started by hand with `hzaserve`.)
 2. **Files** — a Nautilus window at `~/Desktop`.
 3. **Settings** — `gnome-control-center` on the Sound panel.
-4. **System Monitor**.
-5. **Claude Desktop** — on the laptop panel of the *second* workspace, so
-   `Super+PageDown` after login lands on it with both external monitors free
-   for Firefox and VS Code.
+4. **Resources** — replaced System Monitor in Ubuntu 26.04.
+5. **Claude Desktop** — on the *second* workspace, so `Super+PageDown` after
+   login lands on it.
 
 **Where it lives.**
 
@@ -147,39 +147,25 @@ does the same thing as two separate windows.
 **Disabling.** Delete `~/.config/autostart/startup-windows.desktop`, or flip
 `X-GNOME-Autostart-enabled` to `false` in the repo copy.
 
-**Window placement.** Each window is moved to its own monitor region:
+**Window placement.** None, since the Ubuntu 26.04 upgrade (2026-11-05).
+GNOME 50 is Wayland-only, and on Wayland `wmctrl` can't see or move native
+windows, so the old per-monitor placement silently did nothing (git history
+has it if an X11 session ever needs it back). The windows open wherever GNOME
+puts them.
 
-| Window | Workspace | Monitor | Position |
-|---|---|---|---|
-| Settings (Sound) | 1st | left external, `DP-1-0.3` | top half |
-| System Monitor | 1st | left external, `DP-1-0.3` | bottom half |
-| Terminal (2 tabs) | 1st | right external, `DP-1-0.2` | top half |
-| Files (`~/Desktop`) | 1st | right external, `DP-1-0.2` | bottom half |
-| Claude Desktop | 2nd | laptop panel, `eDP-1` | full |
+Claude Desktop still lands on the second workspace, through GNOME's
+**Auto Move Windows** extension (`gnome-shell-extension-auto-move-windows`
+in `packages.txt`) rather than the script:
 
-Only `gnome-terminal` has a `--geometry` flag, so placement goes through
-**`wmctrl`** (in `packages.txt`) for uniformity. Without it the windows
-still open, just unplaced (and Claude stays on the first workspace), and the
-log says so.
+```bash
+gnome-extensions enable auto-move-windows@gnome-shell-extensions.gcampax.github.com
+gsettings set org.gnome.shell.extensions.auto-move-windows application-list "['com.anthropic.Claude.desktop:2']"
+```
 
-The second-workspace trick leans on two GNOME settings, both current on this
-machine: dynamic workspaces (`org.gnome.mutter dynamic-workspaces true`),
-which guarantee an empty workspace exists right after the first four windows
-land, and `org.gnome.mutter workspaces-only-on-primary false`, which makes
-each workspace span all three monitors rather than just the primary.
-`wmctrl -t` moves the window there without switching your view.
-
-The coordinates are hardcoded constants at the top of `startup-windows.sh`,
-derived from `xrandr --query` plus the 32px the GNOME top bar reserves via
-`_NET_WORKAREA`. **Replugging or rearranging monitors means redoing that
-arithmetic** — the comment block above the constants shows the working.
-
-Identifying which window to move is the fiddly part. All `gnome-terminal`
-windows share one `gnome-terminal-server` process and therefore one `WM_CLASS`,
-so the script snapshots the matching window IDs *before* launching each app and
-moves whichever ID is new. Failing that (Files, Settings, System Monitor, and
-Claude are single-instance, so launching an already-running one just raises it), it falls
-back to the most recent matching window.
+That rule applies whenever Claude opens a window, not just at login. It
+relies on dynamic workspaces (`org.gnome.mutter dynamic-workspaces true`, so a
+second workspace exists) and `workspaces-only-on-primary false` (so it spans
+all three monitors), both current on this machine.
 
 
 ## Projects set up by the script
@@ -202,7 +188,6 @@ back to the most recent matching window.
 |---|---|
 | `packages.txt` | Apt packages installed by step 5 (Chinese input, CLI tools, Erlang build deps, etc.) |
 | `snaps.txt` | Inventory of default Ubuntu snaps and which ones get replaced |
-| `vscode/extensions.txt` | VS Code extensions installed by step 15 |
 | `.bashrc.bak` | Pre-dotfiles-repo backup of `.bashrc` |
 
 ## Re-running

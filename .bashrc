@@ -198,11 +198,18 @@ _svcpayload() {
     printf "bash -ic '%s; ec=\$?; echo; echo \"[%s exited rc=\$ec]\"; exec bash'" "$2" "$1"
 }
 
-# two tabs in one window (hzaserve no longer starts at login; run it by hand)
+# two tabs in one window (hzaserve no longer starts at login; run it by hand).
+# Talon is X11-only and crashes under Wayland, so its tab only opens in an
+# X11 session; under GNOME/Wayland you just get the wtp tab.
 startupservices() {
-    gnome-terminal --geometry=110x30 \
-        --window -t talon -e "$(_svcpayload talon tln)" \
-        --tab    -t wtp   -e "$(_svcpayload wtp   wtpserve)" 2>/dev/null
+    if [ "${XDG_SESSION_TYPE:-}" = x11 ]; then
+        gnome-terminal --geometry=110x30 \
+            --window -t talon -e "$(_svcpayload talon tln)" \
+            --tab    -t wtp   -e "$(_svcpayload wtp   wtpserve)" 2>/dev/null
+    else
+        gnome-terminal --geometry=110x30 \
+            --window -t wtp   -e "$(_svcpayload wtp   wtpserve)" 2>/dev/null
+    fi
 }
 
 # two separate windows (the original, minus hanzi)

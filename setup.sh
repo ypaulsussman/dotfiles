@@ -260,22 +260,7 @@ chmod +x "$DOTFILES_DIR/autostart/startup-windows.sh"
 chmod +x "$DOTFILES_DIR/.claude/hooks/session-checklist.sh"
 
 # ----------------------------------------------------------------
-# 15. Install VSCode extensions (if code is available)
-# ----------------------------------------------------------------
-EXTENSIONS_FILE="$DOTFILES_DIR/vscode/extensions.txt"
-if command -v code &>/dev/null && [ -f "$EXTENSIONS_FILE" ]; then
-  echo "==> Installing VSCode extensions..."
-  while IFS= read -r ext; do
-    [ -z "$ext" ] && continue
-    [[ "$ext" != *.* ]] && continue  # skip comments and non-extension lines
-    code --install-extension "$ext" --force 2>/dev/null || true
-  done < "$EXTENSIONS_FILE"
-else
-  echo "==> Skipping VSCode extensions (code not found or extensions.txt missing)."
-fi
-
-# ----------------------------------------------------------------
-# 16. Summary
+# 15. Summary
 # ----------------------------------------------------------------
 echo ""
 echo "Done!"
