@@ -94,7 +94,7 @@ alias coba="code ~/.bashrc"
 alias soba="source ~/.bashrc"
 
 alias tln='~/talon/run.sh'
-alias supercopy="rsync -avh --progress"
+alias supercopy="rsync -avh --progress --fsync"
 # Mirror DATALAKE_2026 to both ybox drives (with --delete). `susssync -n` previews.
 # Checks each drive is mounted, syncs both even if one fails, ends with a verdict.
 # --no-perms/owner/group: exFAT/NTFS can't store them, so rsync would report spurious diffs.
